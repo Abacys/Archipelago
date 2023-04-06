@@ -70,7 +70,7 @@ itemIds["Aero Resistance +3"] = 0x198438
 itemIds["Aero Resistance +4"] = 0x198439
 itemIds["Trophy Chip"] = 0x19843A
 
-itemIds["Kingdom Key"] = 0x198440
+--itemIds["Kingdom Key"] = 0x198440
 itemIds["Kingdom Key 1.5"] = 0x198441
 itemIds["Kingdom Key 2.0"] = 0x198442
 itemIds["Kingdom Key 2.5"] = 0x198443
@@ -126,7 +126,7 @@ itemIds["Ultima Weapon >>"] = 0x198474
 itemIds["Ultima Weapon >>>"] = 0x198475
 itemIds["Ultima Weapon >>>>"] = 0x198476
 
-itemIds["Blade Rush"] = 0x198480
+--itemIds["Blade Rush"] = 0x198480
 itemIds["Energy Bomb"] = 0x198481
 itemIds["Faith"] = 0x198482
 itemIds["Mega Flare"] = 0x198483
@@ -247,10 +247,6 @@ for k, v in pairs(itemIds) do
     sentCount[k] = 0
     itemMax[k] = itemMax[k]
 end
-
-obtainedCount["Kingdom Key"] = 0
-hasCount["Kingdom Key"] = 0
-sentCount["Kingdom Key"] = 0
 
 already_obtained = {}
 
