@@ -61,7 +61,7 @@ class KHRECContext(CommonContext):
         self.messages = {}
         self.locations_array = []
         self.nds_status = CONNECTION_INITIAL_STATUS
-        self.game = 'Kingdom Hearts Re:Coded'
+        self.game = 'Kingdom Hearts ReCoded'
         self.awaiting_rom = False
         self.goal = 1
 
