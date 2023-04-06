@@ -32,7 +32,7 @@ item_table: Dict[str, ItemData] = {
     "Elixir": ItemData(filler, 99, 0x1983F5),
     "Megalixir": ItemData(filler, 99, 0x1983F6),
     
-    "Level Up": ItemData(useful, 99, 0x198400),
+#    "Level Up": ItemData(useful, 99, 0x198400),
     "Blank Chip": ItemData(useful, 99, 0x198401),
     "HP +2": ItemData(useful, 99, 0x198402),
     "HP +4": ItemData(useful, 99, 0x198403),
@@ -89,7 +89,7 @@ item_table: Dict[str, ItemData] = {
     "Aero Resistance +4": ItemData(useful, 99, 0x198439),
     "Trophy Chip": ItemData(useful, 30, 0x198436),
     
-    "Kingdom Key": ItemData(useful, 1, 0x198440),
+#    "Kingdom Key": ItemData(useful, 1, 0x198440),
     "Kingdom Key 1.5": ItemData(useful, 1, 0x198441),
     "Kingdom Key 2.0": ItemData(useful, 1, 0x198442),
     "Kingdom Key 2.5": ItemData(useful, 1, 0x198443),
@@ -145,7 +145,7 @@ item_table: Dict[str, ItemData] = {
     "Ultima Weapon >>>": ItemData(useful, 1, 0x198475),
     "Ultima Weapon >>>>": ItemData(useful, 1, 0x198476),
     
-    "Blade Rush": ItemData(useful, 1, 0x198480),
+#    "Blade Rush": ItemData(useful, 1, 0x198480),
     "Energy Bomb": ItemData(useful, 1, 0x198481),
     "Faith": ItemData(useful, 1, 0x198482),
     "Mega Flare": ItemData(useful, 1, 0x198483),

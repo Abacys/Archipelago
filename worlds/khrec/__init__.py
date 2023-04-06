@@ -20,7 +20,7 @@ class KHRECWeb(WebWorld):
     theme = "stone"
     setup = Tutorial(
         "Multiworld Setup Tutorial",
-        "A guide to setting up Kingdom Hearts Re:Coded for Archipelago on your computer.",
+        "A guide to setting up Kingdom Hearts ReCoded for Archipelago on your computer.",
         "English",
         "multiworld_en.md",
         "multiworld/en",
@@ -36,7 +36,7 @@ class KHRECWorld(World):
     Your objective is to beat Sora's Heartless and complete the story!
     """
     option_definitions = khrec_options
-    game = "Kingdom Hearts Re:Coded"
+    game = "Kingdom Hearts ReCoded"
     topology_present = False
     data_version = 0
     web = KHRECWeb()
