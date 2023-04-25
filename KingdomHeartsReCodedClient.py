@@ -142,7 +142,7 @@ def get_payload(ctx: KHRECContext):
     current_time = time.time()
     return json.dumps(
         {
-            "items": [items_by_id[item.item] for item in ctx.items_received if item.item >= 25000 and not "Null" in ctx.received_items_from_game],
+            "items": [items_by_id[item.item] for item in ctx.items_received if item.item >= 137000 and not "Null" in ctx.received_items_from_game],
             "checked_locs": [''.join([i+" " for i in str(locations_by_id[item]).split(" ")[:-1]])[:-1] for item in ctx.checked_locations],
             "messages": {f'{key[0]}:{key[1]}': value for key, value in ctx.messages.items()
                          if key[0] > current_time - 10},

@@ -5,13 +5,13 @@ local json = require('json')
 
 itemIds = {}
 
-itemIds["Potion"] = 0x1983F0
+--[[itemIds["Potion"] = 0x1983F0
 itemIds["Hi-Potion"] = 0x1983F1
 itemIds["Ether"] = 0x1983F2
 itemIds["Hi-Ether"] = 0x1983F3
 itemIds["Panacea"] = 0x1983F4
 itemIds["Elixir"] = 0x1983F5
-itemIds["Megalixir"] = 0x1983F6
+itemIds["Megalixir"] = 0x1983F6]]--
 
 --itemIds["Level Up"] = 0x198400
 itemIds["Blank Chip"] = 0x198401
