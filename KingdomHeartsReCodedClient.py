@@ -215,7 +215,7 @@ async def nds_sync_task(ctx: KHRECContext):
                     logger.info("Successfully Connected to NDS")
                     ctx.nds_status = CONNECTION_CONNECTED_STATUS
                 else:
-                    ctx.nds_status = f"Was tentatively connected but error occured: {error_status}"
+                    ctx.nds_status = f"Was tentatively connected but error occurred: {error_status}"
             elif error_status:
                 ctx.nds_status = error_status
                 logger.info("Lost connection to nds and attempting to reconnect. Use /nds for status updates")
