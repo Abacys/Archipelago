@@ -20,9 +20,9 @@ from worlds.khrec.Locations import location_table
 
 SYSTEM_MESSAGE_ID = 0
 
-CONNECTION_TIMING_OUT_STATUS = "Connection timing out. Please restart your emulator, then restart KHDaysRandomizer.lua"
-CONNECTION_REFUSED_STATUS = "Connection Refused. Please start your emulator and make sure KHDaysRandomizer.lua is running"
-CONNECTION_RESET_STATUS = "Connection was reset. Please restart your emulator, then restart KHDaysRandomizer.lua"
+CONNECTION_TIMING_OUT_STATUS = "Connection timing out. Please restart your emulator, then restart KHRECRandomizer.lua"
+CONNECTION_REFUSED_STATUS = "Connection Refused. Please start your emulator and make sure KHRECRandomizer.lua is running"
+CONNECTION_RESET_STATUS = "Connection was reset. Please restart your emulator, then restart KHRECRandomizer.lua"
 CONNECTION_TENTATIVE_STATUS = "Initial Connection Made"
 CONNECTION_CONNECTED_STATUS = "Connected"
 CONNECTION_INITIAL_STATUS = "Connection has not been initiated"
