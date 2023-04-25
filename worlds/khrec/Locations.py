@@ -12,7 +12,7 @@ location_table = {}
 
 for (name) in item_table:
     for i in range(item_table[name].khrecamount):
-        if item_table[name].code >= 25000:
+        if item_table[name].code >= 137000:
             location_table[name+" "+str(i+1)] = 500000+i+1+(item_table[name].khrecaddress*1000)-1654784000
 
 for (name) in item_table:
