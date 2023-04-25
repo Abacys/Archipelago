@@ -440,7 +440,8 @@ function table.empty (self)
 end
 
 function main()
-    server, error = socket.bind('localhost', 52987)
+    server, error = socket.bind('localhost', 12462)
+
     while true do
         frame = frame + 1
         if not (curstate == prevstate) then
@@ -457,7 +458,7 @@ function main()
                 print("Attempting to connect")
                 local client, timeout = server:accept()
                 if timeout == nil then
-                    -- print('Initial Connection Made')
+                    print('Initial Connection Made')
                     curstate = STATE_INITIAL_CONNECTION_MADE
                     zeldaSocket = client
                     zeldaSocket:settimeout(0)

@@ -1,5 +1,6 @@
 # Based (read: copied almost wholesale and edited) off the KHDays Client.
 
+
 import asyncio
 import copy
 import json
@@ -20,9 +21,9 @@ from worlds.khrec.Locations import location_table
 
 SYSTEM_MESSAGE_ID = 0
 
-CONNECTION_TIMING_OUT_STATUS = "Connection timing out. Please restart your emulator, then restart KHRECRandomizer.lua"
-CONNECTION_REFUSED_STATUS = "Connection Refused. Please start your emulator and make sure KHRECRandomizer.lua is running"
-CONNECTION_RESET_STATUS = "Connection was reset. Please restart your emulator, then restart KHRECRandomizer.lua"
+CONNECTION_TIMING_OUT_STATUS = "Connection timing out. Please restart your emulator, then restart connector_khrec.lua"
+CONNECTION_REFUSED_STATUS = "Connection Refused. Please start your emulator and make sure connector_khrec.lua is running"
+CONNECTION_RESET_STATUS = "Connection was reset. Please restart your emulator, then restart connector_khrec.lua"
 CONNECTION_TENTATIVE_STATUS = "Initial Connection Made"
 CONNECTION_CONNECTED_STATUS = "Connected"
 CONNECTION_INITIAL_STATUS = "Connection has not been initiated"
@@ -47,6 +48,7 @@ class KHRECCommandProcessor(ClientCommandProcessor):
         global DISPLAY_MSGS
         DISPLAY_MSGS = not DISPLAY_MSGS
         logger.info(f"Messages are now {'enabled' if DISPLAY_MSGS else 'disabled'}")
+
 
 class KHRECContext(CommonContext):
     command_processor = KHRECCommandProcessor
@@ -81,7 +83,7 @@ class KHRECContext(CommonContext):
             self.goal = slot_data["goal"]
             async_start(self.send_msgs([
                 {"cmd": "Get",
-                "keys": ["received_items"]}
+                 "keys": ["received_items"]}
             ]))
         elif cmd == 'Print':
             msg = args['text']
@@ -89,7 +91,7 @@ class KHRECContext(CommonContext):
                 self._set_message(msg, SYSTEM_MESSAGE_ID)
         elif cmd == 'Retrieved':
             if "keys" not in args:
-                logger.warning(f"invalid Retrieved packet to KingdomHeartsReCodedClient: {args}")
+                logger.warning(f"invalid Retrieved packet to KHRECClient: {args}")
                 return
             keys = cast(Dict[str, Optional[str]], args["keys"])
             if "received_items" in keys:
@@ -100,7 +102,6 @@ class KHRECContext(CommonContext):
                     self.received_items_from_game = {}
             else:
                 self.received_items_from_game = {}
-
 
     def on_print_json(self, args: dict):
         if self.ui:
@@ -142,11 +143,14 @@ def get_payload(ctx: KHRECContext):
     current_time = time.time()
     return json.dumps(
         {
-            "items": [items_by_id[item.item] for item in ctx.items_received if item.item >= 137000 and not "Null" in ctx.received_items_from_game],
-            "checked_locs": [''.join([i+" " for i in str(locations_by_id[item]).split(" ")[:-1]])[:-1] for item in ctx.checked_locations],
+            "items": [items_by_id[item.item] for item in ctx.items_received if
+                      item.item >= 137000 and not "Null" in ctx.received_items_from_game],
+            "checked_locs": [''.join([i + " " for i in str(locations_by_id[item]).split(" ")[:-1]])[:-1] for item in
+                             ctx.checked_locations],
             "messages": {f'{key[0]}:{key[1]}': value for key, value in ctx.messages.items()
                          if key[0] > current_time - 10},
-            "received_items": [item for item in ctx.received_items_from_game if not "Null" in ctx.received_items_from_game]
+            "received_items": [item for item in ctx.received_items_from_game if
+                               not "Null" in ctx.received_items_from_game]
         }
     )
 
@@ -174,18 +178,18 @@ async def nds_sync_task(ctx: KHRECContext):
                             ctx.locations_array.append(data_decoded["checked_locs"][i])
                         await ctx.send_msgs([
                             {"cmd": "LocationChecks",
-                            "locations": ctx.locations_array}
+                             "locations": ctx.locations_array}
                         ])
                     if ctx.game is not None and 'received_items' in data_decoded and not "Null" in ctx.received_items_from_game:
                         await ctx.send_msgs([
                             {"cmd": "Set",
-                            "key": "received_items",
-                            "default": {},
-                            "want_reply": False,
-                            "operations": [{"operation": "replace", "value": data_decoded["received_items"]}]}
+                             "key": "received_items",
+                             "default": {},
+                             "want_reply": False,
+                             "operations": [{"operation": "replace", "value": data_decoded["received_items"]}]}
                         ])
                         ctx.received_items_from_game = data_decoded["received_items"]
-                    #TODO Get flag for finishing the game
+                    # TODO Get flag for finishing the game
                     if ctx.game is not None and 'goal' in data_decoded:
                         if not ctx.finished_game and int(data_decoded["goal"]) >= ctx.goal:
                             await ctx.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
@@ -222,7 +226,7 @@ async def nds_sync_task(ctx: KHRECContext):
         else:
             try:
                 logger.debug("Attempting to connect to NDS")
-                ctx.nds_streams = await asyncio.wait_for(asyncio.open_connection("localhost", 52987), timeout=10)
+                ctx.nds_streams = await asyncio.wait_for(asyncio.open_connection("localhost", 12462), timeout=10)
                 ctx.nds_status = CONNECTION_TENTATIVE_STATUS
             except TimeoutError:
                 logger.debug("Connection Timed Out, Trying Again")

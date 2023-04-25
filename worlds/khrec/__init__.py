@@ -32,8 +32,8 @@ class KHRECWeb(WebWorld):
 
 class KHRECWorld(World):
     """
-    Kingdom Hearts Re:Coded is a game for the Nintendo DS! Play through the story of Kingdom Hearts 1 but slightly to the left!
-    Your objective is to beat Sora's Heartless and complete the story!
+    Kingdom Hearts Re:Coded is a game for the Nintendo DS! Play through the story of Kingdom Hearts 1 but slightly to
+    the left! Your objective is to beat Sora's Heartless and complete the story!
     """
     option_definitions = khrec_options
     game = "Kingdom Hearts ReCoded"
@@ -43,7 +43,7 @@ class KHRECWorld(World):
 
     item_name_to_id = {name: data.code for name, data in item_table.items()}
     location_name_to_id = location_table
-    
+
     def __init__(self, world: MultiWorld, player: int):
         super().__init__(world, player)
         self.generator_in_use = threading.Event()
@@ -62,28 +62,29 @@ class KHRECWorld(World):
         missions = Region("Missions", self.player, self.multiworld)
 
         missions.locations = [KHRECLocation(self.player, loc_name, loc_data, missions)
-                           for loc_name, loc_data in location_table.items()]
-"""        for item in missions.locations:
-            if "Elixir" in item.name:
-                item.progress_type = Location.progress_type.EXCLUDED
-            if "Megalixir" in item.name:
-                item.progress_type = Location.progress_type.EXCLUDED
-            if "Panacea" in item.name:
-                item.progress_type = Location.progress_type.EXCLUDED
-            if "Limit Recharge" in item.name:
-                item.progress_type = Location.progress_type.EXCLUDED"""
+                              for loc_name, loc_data in location_table.items()]
         begin_game = Entrance(self.player, "Begin Game", menu)
         menu.exits.append(begin_game)
         begin_game.connect(missions)
         self.multiworld.regions.append(menu)
         self.multiworld.regions.append(missions)
+        """ goes before begin game       
+                    for item in missions.locations:
+                    if "Elixir" in item.name:
+                        item.progress_type = Location.progress_type.EXCLUDED
+                    if "Megalixir" in item.name:
+                        item.progress_type = Location.progress_type.EXCLUDED
+                    if "Panacea" in item.name:
+                        item.progress_type = Location.progress_type.EXCLUDED
+                    if "Limit Recharge" in item.name:
+                        item.progress_type = Location.progress_type.EXCLUDED"""
 
     def generate_basic(self):
         item_pool = []
         for (name) in item_table:
             for i in range(item_table[name].khrecamount):
                 item_pool += [self.create_item(name)]
-                    
+
         for (name) in location_table:
             if location_table[name] is None:
                 event_item = self.create_event(name)
@@ -99,7 +100,8 @@ class KHRECWorld(World):
 
     def get_filler_item_name(self) -> str:
         if self.filler_items is None:
-            self.filler_items = [item for item in item_table if item_table[item].classification == ItemClassification.filler]
+            self.filler_items = [item for item in item_table if
+                                 item_table[item].classification == ItemClassification.filler]
         return self.multiworld.random.choice(self.filler_items)
 
     def fill_slot_data(self) -> Dict[str, Any]:
