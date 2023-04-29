@@ -32,7 +32,7 @@ item_table: Dict[str, ItemData] = {
     "Elixir": ItemData(filler, 0, 0x1983F5),
     "Megalixir": ItemData(filler, 0, 0x1983F6),
     
-#    "Level Up": ItemData(progression, 49, 0x198400),
+    "Level Up": ItemData(progression, 49, 0x198400),
     "Blank Chip": ItemData(useful, 13, 0x198401),
     "HP +2": ItemData(useful, 14, 0x198402),
     "HP +4": ItemData(useful, 2, 0x198403),

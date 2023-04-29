@@ -61,7 +61,7 @@ class KHRECWorld(World):
         menu = Region("Menu", self.player, self.multiworld)
         worlds = Region("Worlds", self.player, self.multiworld)
 
-        worlds.locations = [KHRECLocation(self.player, loc_name, loc_data, missions)
+        worlds.locations = [KHRECLocation(self.player, loc_name, loc_data, worlds)
                               for loc_name, loc_data in location_table.items()]
         begin_game = Entrance(self.player, "Begin Game", menu)
         menu.exits.append(begin_game)
