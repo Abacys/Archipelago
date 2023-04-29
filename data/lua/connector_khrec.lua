@@ -5,15 +5,15 @@ local json = require('json')
 
 itemIds = {}
 
---[[itemIds["Potion"] = 0x1983F0
+itemIds["Potion"] = 0x1983F0
 itemIds["Hi-Potion"] = 0x1983F1
 itemIds["Ether"] = 0x1983F2
 itemIds["Hi-Ether"] = 0x1983F3
 itemIds["Panacea"] = 0x1983F4
 itemIds["Elixir"] = 0x1983F5
-itemIds["Megalixir"] = 0x1983F6]]--
+itemIds["Megalixir"] = 0x1983F6
 
---itemIds["Level Up"] = 0x198400
+itemIds["Level Up"] = 0x198400
 itemIds["Blank Chip"] = 0x198401
 itemIds["HP +2"] = 0x198402
 itemIds["HP +4"] = 0x198403
@@ -70,7 +70,7 @@ itemIds["Aero Resistance +3"] = 0x198438
 itemIds["Aero Resistance +4"] = 0x198439
 itemIds["Trophy Chip"] = 0x19843A
 
---itemIds["Kingdom Key"] = 0x198440
+itemIds["Kingdom Key"] = 0x198440
 itemIds["Kingdom Key 1.5"] = 0x198441
 itemIds["Kingdom Key 2.0"] = 0x198442
 itemIds["Kingdom Key 2.5"] = 0x198443
@@ -245,7 +245,7 @@ for k, v in pairs(itemIds) do
     obtainedCount[k] = mainmemory.read_u8(v)
     hasCount[k] = mainmemory.read_u8(v)
     sentCount[k] = 0
-    itemMax[k] = itemMax[k]
+    itemMax[k] = itemMax[k]s
 end
 
 already_obtained = {}
@@ -254,16 +254,21 @@ function handle_items(itemName)
     local item_count = mainmemory.read_u8(itemIds[itemName])
     local got_checks = {}
     if hasCount[itemName] < item_count then
-        local i = 0
-        local toSend = item_count-hasCount[itemName] + sentCount[itemName]
-        while i < toSend do
-            local temp = toSend-i
-            if temp <= itemMax[itemName] then
-                got_checks[tostring(i)] = (itemIds[itemName]*1000)-1654784000+500000+temp
+        if hasCount[itemName] < itemMax[itemName] then
+            local i = 0
+            local toSend = item_count-hasCount[itemName] + sentCount[itemName]
+            while i < toSend do 
+                local temp = toSend-i
+                if temp <= itemMax[itemName] then
+                    got_checks[tostring(i)] = (itemIds[itemName]*1000)-1654784000+500000+temp
+                end
+                i = i + 1
             end
-            i = i + 1
+            mainmemory.write_u8(itemIds[itemName], mainmemory.read_u8(itemIds[itemName])-(item_count-hasCount[itemName]))
         end
-        mainmemory.write_u8(itemIds[itemName], mainmemory.read_u8(itemIds[itemName])-(item_count-hasCount[itemName]))
+		--[[if itemIds[itemName] > 0x198440 and itemIds[itemName] < 0x198477 then
+            
+        end]]
     end
     if already_obtained ~= nil then
         local merged = {}
@@ -376,7 +381,7 @@ function processBlock(block)
 end
 
 function StateOKForMainLoop()
-    return (mainmemory.read_u8(0x192017) ~= 0x40)
+    return (mainmemory.read_u8(0x056f50) == 0x0f and mainmemory.read_u8(0x192017) ~= 0x40)
 end
 
 function receive()
@@ -410,8 +415,8 @@ function receive()
         retTable["received_items"] = temp
     end
     processBlock(json.decode(l))
-    if mainmemory.read_u8(0x25DDEB) == 1 then
-        retTable["goal"] = tostring(mainmemory.read_u8(0x25DDEB))
+    if mainmemory.read_u8(0x195bb3) >= 0b01000000 then
+        retTable["goal"] = tostring(1)--tostring(mainmemory.read_u8(0x25DDEB))
     end
     if StateOKForMainLoop() then
         for k, v in pairs(itemIds) do

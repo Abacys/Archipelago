@@ -59,15 +59,15 @@ class KHRECWorld(World):
 
     def create_regions(self):
         menu = Region("Menu", self.player, self.multiworld)
-        missions = Region("Missions", self.player, self.multiworld)
+        worlds = Region("Worlds", self.player, self.multiworld)
 
-        missions.locations = [KHRECLocation(self.player, loc_name, loc_data, missions)
+        worlds.locations = [KHRECLocation(self.player, loc_name, loc_data, missions)
                               for loc_name, loc_data in location_table.items()]
         begin_game = Entrance(self.player, "Begin Game", menu)
         menu.exits.append(begin_game)
-        begin_game.connect(missions)
+        begin_game.connect(worlds)
         self.multiworld.regions.append(menu)
-        self.multiworld.regions.append(missions)
+        self.multiworld.regions.append(worlds)
         """ goes before begin game       
                     for item in missions.locations:
                     if "Elixir" in item.name:
