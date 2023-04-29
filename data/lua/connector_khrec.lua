@@ -245,7 +245,6 @@ for k, v in pairs(itemIds) do
     obtainedCount[k] = mainmemory.read_u8(v)
     hasCount[k] = mainmemory.read_u8(v)
     sentCount[k] = 0
-    itemMax[k] = itemMax[k]s
 end
 
 already_obtained = {}
@@ -415,7 +414,7 @@ function receive()
         retTable["received_items"] = temp
     end
     processBlock(json.decode(l))
-    if mainmemory.read_u8(0x195bb3) >= 0b01000000 then
+    if mainmemory.read_u8(0x195bb3) > 63 then
         retTable["goal"] = tostring(1)--tostring(mainmemory.read_u8(0x25DDEB))
     end
     if StateOKForMainLoop() then

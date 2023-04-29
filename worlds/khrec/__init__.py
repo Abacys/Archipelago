@@ -91,7 +91,7 @@ class KHRECWorld(World):
                 self.multiworld.get_location(name, self.player).place_locked_item(event_item)
 
         for i in range(len(location_table) - len(item_pool) - len(self.multiworld.precollected_items[self.player])):
-            item_pool += [self.create_item("Potion")]
+            item_pool += [self.create_item(self.get_filler_item_name())]
         self.multiworld.itempool += item_pool
 
     def set_rules(self):
