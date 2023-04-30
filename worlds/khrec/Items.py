@@ -87,7 +87,7 @@ item_table: Dict[str, ItemData] = {
     "Aero Resistance +2": ItemData(useful, 2, 0x198437),
     "Aero Resistance +3": ItemData(useful, 1, 0x198438),
     "Aero Resistance +4": ItemData(useful, 2, 0x198439),
-    "Trophy Chip": ItemData(useful, 30, 0x198436),
+    "Trophy Chip": ItemData(useful, 30, 0x19843A),
     
     "Kingdom Key": ItemData(useful, 0, 0x198440),
     "Kingdom Key 1.5": ItemData(useful, 0, 0x198441),

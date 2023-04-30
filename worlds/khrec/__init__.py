@@ -68,23 +68,12 @@ class KHRECWorld(World):
         begin_game.connect(worlds)
         self.multiworld.regions.append(menu)
         self.multiworld.regions.append(worlds)
-        """ goes before begin game       
-                    for item in missions.locations:
-                    if "Elixir" in item.name:
-                        item.progress_type = Location.progress_type.EXCLUDED
-                    if "Megalixir" in item.name:
-                        item.progress_type = Location.progress_type.EXCLUDED
-                    if "Panacea" in item.name:
-                        item.progress_type = Location.progress_type.EXCLUDED
-                    if "Limit Recharge" in item.name:
-                        item.progress_type = Location.progress_type.EXCLUDED"""
 
     def generate_basic(self):
         item_pool = []
         for (name) in item_table:
             for i in range(item_table[name].khrecamount):
                 item_pool += [self.create_item(name)]
-
         for (name) in location_table:
             if location_table[name] is None:
                 event_item = self.create_event(name)
