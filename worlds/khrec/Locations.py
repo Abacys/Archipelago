@@ -12,8 +12,8 @@ location_table = {}
 
 for (name) in item_table:
     for i in range(item_table[name].khrecamount):
-        if item_table[name].code >= 137000:
-            location_table[name+" "+str(i+1)] = 137000+i+1+item_table[name].khrecaddress*100-167219200
+        if item_table[name].code is not None:
+            location_table[name+" "+str(i+1)] = 137000+i+(item_table[name].khrecaddress*100)-167219200
 
 #for (name) in item_table:
 #    if item_table[name].code is None:

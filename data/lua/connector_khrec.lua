@@ -174,13 +174,13 @@ for k, v in pairs(itemIds) do
     itemMax[k] = 1
 end
 
-itemMax["Potion"] = 00
-itemMax["Hi-Potion"] = 00
-itemMax["Ether"] = 00
-itemMax["Hi-Ether"] = 00
-itemMax["Panacea"] = 00
-itemMax["Elixir"] = 00
-itemMax["Megalixir"] = 00
+itemMax["Potion"] = 0
+itemMax["Hi-Potion"] = 0
+itemMax["Ether"] = 0
+itemMax["Hi-Ether"] = 0
+itemMax["Panacea"] = 0
+itemMax["Elixir"] = 0
+itemMax["Megalixir"] = 0
 itemMax["Level Up"] = 49
 itemMax["Blank Chip"] = 13
 itemMax["HP +2"] = 14
@@ -301,15 +301,17 @@ function handle_items(itemName)
     if hasCount[itemName] < item_count then
         if hasCount[itemName] < itemMax[itemName] then
             local i = 0
+            local sent_item_count = -sentCount[itemName]
             local toSend = item_count-hasCount[itemName] + sentCount[itemName]
             while i < toSend do 
                 local temp = toSend-i
                 if temp <= itemMax[itemName] then
-                    got_checks[tostring(i)] = (itemIds[itemName]*1000)-1654784000+500000+temp
+                    got_checks[tostring(i)] = 137000+temp-1+(itemIds[itemName]*100)-167219200
+                    sent_item_count = sent_item_count + 1
                 end
                 i = i + 1
             end
-            mainmemory.write_u8(itemIds[itemName], mainmemory.read_u8(itemIds[itemName])-(item_count-hasCount[itemName]))
+            mainmemory.write_u8(itemIds[itemName], mainmemory.read_u8(itemIds[itemName])-(sent_item_count))
         end
 		--[[if itemIds[itemName] > 0x198440 and itemIds[itemName] < 0x198477 then
             
