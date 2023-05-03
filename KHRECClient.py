@@ -80,7 +80,7 @@ class KHRECContext(CommonContext):
     def on_package(self, cmd: str, args: dict):
         if cmd == 'Connected':
             slot_data = args["slot_data"]
-            self.goal = slot_data["goal"]
+            self.goal = slot_data["Victory"]
             async_start(self.send_msgs([
                 {"cmd": "Get",
                  "keys": ["received_items"]}
@@ -189,9 +189,8 @@ async def nds_sync_task(ctx: KHRECContext):
                              "operations": [{"operation": "replace", "value": data_decoded["received_items"]}]}
                         ])
                         ctx.received_items_from_game = data_decoded["received_items"]
-                    # TODO Get flag for finishing the game
-                    if ctx.game is not None and 'goal' in data_decoded:
-                        if not ctx.finished_game and int(data_decoded["goal"]) >= ctx.goal:
+                    if ctx.game is not None and "Victory" in data_decoded:
+                        if not ctx.finished_game and int(data_decoded["Victory"]) >= ctx.goal:
                             await ctx.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
                             ctx.finished_game = True
                 except asyncio.TimeoutError:
@@ -222,6 +221,7 @@ async def nds_sync_task(ctx: KHRECContext):
                     ctx.nds_status = f"Was tentatively connected but error occurred: {error_status}"
             elif error_status:
                 ctx.nds_status = error_status
+                logger.info("Lost connection to nds and attempting to reconnect. Use /nds for status updates")
                 logger.info("Lost connection to nds and attempting to reconnect. Use /nds for status updates")
         else:
             try:

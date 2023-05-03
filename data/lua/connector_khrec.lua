@@ -462,8 +462,8 @@ function receive()
         retTable["received_items"] = temp
     end
     processBlock(json.decode(l))
-    if mainmemory.read_u8(0x195bb3) > 63 then
-        retTable["goal"] = tostring(1)--tostring(mainmemory.read_u8(0x25DDEB))
+    if mainmemory.read_u8(0x195bb1) > 0x20 and StateOKForMainLoop() then
+        retTable["Victory"] = tostring(0x195bb1)--tostring(mainmemory.read_u8(0x25DDEB))
     end
     if StateOKForMainLoop() then
         for k, v in pairs(itemIds) do

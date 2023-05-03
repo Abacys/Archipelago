@@ -194,4 +194,4 @@ for (name) in item_table:
     item_table[name] = ItemData(item_table[name].classification, item_table[name].khrecamount, item_table[name].khrecaddress, i+137000)
     i += 1
 
-item_table["Game Finished"] = ItemData(progression, 0, 0, None, True)
+item_table["Victory"] = ItemData(progression, 0, 0, None, True)

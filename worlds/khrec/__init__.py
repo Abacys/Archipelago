@@ -95,5 +95,5 @@ class KHRECWorld(World):
 
     def fill_slot_data(self) -> Dict[str, Any]:
         return {
-            "goal": self.multiworld.Goal[self.player].value,
+            "Victory": self.multiworld.Goal[self.player].value,
         }
