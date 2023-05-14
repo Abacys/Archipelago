@@ -159,7 +159,7 @@ itemIds["Eternity Charm"] = 0x19849D
 itemIds["Fire Charm"] = 0x19849E
 itemIds["Blizzard Charm"] = 0x19849F
 itemIds["Thunder Charm"] = 0x1984A0
-itemIds["Heavy Charm"] = 0x1984A1
+itemIds["Heavy Chain"] = 0x1984A1
 itemIds["Zip Watch"] = 0x1984A2
 itemIds["Compass"] = 0x1984A3
 itemIds["Feather Chain"] = 0x1984A4
@@ -307,7 +307,7 @@ itemMax["D-Firaga"] = 1
 itemMax["D-Blizzaga"] = 1
 itemMax["D-Thundaga"] = 1
 
-itemMax["Armor Badge"] = 1 
+itemMax["Armor Bangle"] = 1 
 itemMax["Counter Ring"] = 1
 itemMax["Command Ring"] = 1
 itemMax["Payback Ring"] = 1
