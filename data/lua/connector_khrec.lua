@@ -148,7 +148,7 @@ itemIds["Command Ring"] = 0x198492
 itemIds["Payback Ring"] = 0x198493
 itemIds["Energy Earring"] = 0x198494
 itemIds["Power Armlet"] = 0x198495
-itemIds["Wizard’s Armlet"] = 0x198496
+itemIds["Wizard's Armlet"] = 0x198496
 itemIds["Safeguard Armlet"] = 0x198497
 itemIds["Half-moon Armlet"] = 0x198498
 itemIds["Strike Armlet"] = 0x198499
@@ -170,10 +170,6 @@ itemIds["Heat Sink Belt"] = 0x1984A8
 
 itemMax = {}
 
-for k, v in pairs(itemIds) do
-    itemMax[k] = 1
-end
-
 itemMax["Potion"] = 0
 itemMax["Hi-Potion"] = 0
 itemMax["Ether"] = 0
@@ -181,6 +177,7 @@ itemMax["Hi-Ether"] = 0
 itemMax["Panacea"] = 0
 itemMax["Elixir"] = 0
 itemMax["Megalixir"] = 0
+
 itemMax["Level Up"] = 49
 itemMax["Blank Chip"] = 13
 itemMax["HP +2"] = 14
@@ -243,46 +240,98 @@ itemMax["Kingdom Key 1.5"] = 0
 itemMax["Kingdom Key 2.0"] = 0
 itemMax["Kingdom Key 2.5"] = 0
 itemMax["Kingdom Key 3.0"] = 0
+itemMax["Wishing Star"] = 1
 itemMax["Wishing Star #"] = 0
 itemMax["Wishing Star =#"] = 0
 itemMax["Wishing Star ==#"] = 0
 itemMax["Wishing Star ===#"] = 0
+itemMax["Lady Luck"] = 1
 itemMax["Lady Luck 2"] = 0
 itemMax["Lady Luck 3"] = 0
 itemMax["Lady Luck 4"] = 0
 itemMax["Lady Luck 5"] = 0
+itemMax["Olympia"] = 1
 itemMax["Olympia Alpha"] = 0
 itemMax["Olympia Beta"] = 0
 itemMax["Olympia Gamma"] = 0
 itemMax["Olympia Sigma"] = 0
+itemMax["Three Wishes"] = 1
 itemMax["Three Wishes II"] = 0
 itemMax["Three Wishes III"] = 0
 itemMax["Three Wishes IV"] = 0
 itemMax["Three Wishes V"] = 0
+itemMax["Oblivion"] = 1
 itemMax["Oblivion: Wind"] = 0
 itemMax["Oblivion: Earth"] = 0
 itemMax["Oblivion: Sea"] = 0
 itemMax["Oblivion: Sky"] = 0
+itemMax["Zero/One"] = 1
 itemMax["Zero/One+"] = 0
 itemMax["Zero/One++"] = 0
 itemMax["Zero/One+++"] = 0
 itemMax["Zero/One++++"] = 0
+itemMax["Oathkeeper"] = 1
 itemMax["Oathkeeper: Mind"] = 0
 itemMax["Oathkeeper: Love"] = 0
 itemMax["Oathkeeper: Light"] = 0
 itemMax["Oathkeeper: Heart"] = 0
+itemMax["Metal Chocobo"] = 1
 itemMax["Metal Chocobo: Fe"] = 0
 itemMax["Metal Chocobo: Ag"] = 0
 itemMax["Metal Chocobo: Au"] = 0
 itemMax["Metal Chocobo: Pt"] = 0
+itemMax["Lionheart"] = 1
 itemMax["Lionheart Second Degree"] = 0
 itemMax["Lionheart Third Degree"] = 0
 itemMax["Lionheart Fourth Degree"] = 0
 itemMax["Lionheart Fifth Degree"] = 0
+itemMax["Ultima Weapon"] = 1
 itemMax["Ultima Weapon >"] = 0
 itemMax["Ultima Weapon >>"] = 0
 itemMax["Ultima Weapon >>>"] = 0
 itemMax["Ultima Weapon >>>>"] = 0
+
+itemMax["Blade Rush"] = 0
+itemMax["Energy Bomb"] = 1
+itemMax["Faith"] = 1
+itemMax["Mega Flare"] = 1
+itemMax["Meteor Rain"] = 1
+itemMax["Zone of Ruin"] = 1
+itemMax["Speed Combo"] = 1
+itemMax["Star Rave"] = 1
+itemMax["Spinner Raw"] = 1
+itemMax["D-Fira"] = 1
+itemMax["D-Blizzara"] = 1
+itemMax["D-Thundara"] = 1
+itemMax["D-Firaga"] = 1
+itemMax["D-Blizzaga"] = 1
+itemMax["D-Thundaga"] = 1
+
+itemMax["Armor Badge"] = 1 
+itemMax["Counter Ring"] = 1
+itemMax["Command Ring"] = 1
+itemMax["Payback Ring"] = 1
+itemMax["Energy Earring"] = 1
+itemMax["Power Armlet"] = 1
+itemMax["Wizard's Armlet"] = 1
+itemMax["Safeguard Armlet"] = 1
+itemMax["Half-moon Armlet"] = 1
+itemMax["Strike Armlet"] = 1
+itemMax["CMOS Armlet"] = 1
+itemMax["CMOS Necklace"] = 1
+itemMax["Immortal Charm"] = 1
+itemMax["Eternity Charm"] = 1
+itemMax["Fire Charm"] = 1
+itemMax["Blizzard Charm"] = 1
+itemMax["Thunder Charm"] = 1
+itemMax["Heavy Chain"] = 1
+itemMax["Zip Watch"] = 1
+itemMax["Compass"] = 1
+itemMax["Feather Chain"] = 1
+itemMax["Night Lenses"] = 1
+itemMax["Adamant Belt"] = 1
+itemMax["Liberty Crown"] = 1
+itemMax["Heat Sink Belt"] = 1
 
 obtainedCount = {}
 hasCount = {}
@@ -313,9 +362,6 @@ function handle_items(itemName)
             end
             mainmemory.write_u8(itemIds[itemName], mainmemory.read_u8(itemIds[itemName])-(sent_item_count))
         end
-		--[[if itemIds[itemName] > 0x198440 and itemIds[itemName] < 0x198477 then
-            
-        end]]
     end
     if already_obtained ~= nil then
         local merged = {}

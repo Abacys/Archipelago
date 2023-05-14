@@ -145,7 +145,7 @@ item_table: Dict[str, ItemData] = {
     "Ultima Weapon >>>": ItemData(useful, 0, 0x198475),
     "Ultima Weapon >>>>": ItemData(useful, 0, 0x198476),
     
-    "Blade Rush": ItemData(useful, 1, 0x198480),
+    "Blade Rush": ItemData(useful, 0, 0x198480),
     "Energy Bomb": ItemData(useful, 1, 0x198481),
     "Faith": ItemData(useful, 1, 0x198482),
     "Mega Flare": ItemData(useful, 1, 0x198483),
